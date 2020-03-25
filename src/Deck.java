@@ -11,7 +11,7 @@ public class Deck {
 	/**
 	 * cards contains all the cards in the deck.
 	 */
-	private List<Card> cards;
+	private ArrayList<Card> cards;
 
 	/**
 	 * size is the number of not-yet-dealt cards.
@@ -31,8 +31,14 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		size = values.length * suits.length;
-		
+		this.size = values.length * suits.length;
+		this.cards = new ArrayList<Card>(size);
+		for (int n = 0; n < suits.length; n++) {
+			for (int i = 0; i < values.length; i++) {
+				cards.add(new Card(ranks[i], suits[n], values[i]));
+			}
+		}
+		// cards.shuffle();
 	}
 
 
@@ -42,6 +48,11 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if (this.size == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -50,6 +61,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		return this.size;
 	}
 
 	/**
@@ -67,6 +79,11 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if (!cards.isEmpty()) {
+			return cards.get(this.size - 1);
+		} else {
+			return null;
+		}
 	}
 
 	/**
