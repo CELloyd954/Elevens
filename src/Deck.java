@@ -38,7 +38,7 @@ public class Deck {
 				cards.add(new Card(ranks[i], suits[n], values[i]));
 			}
 		}
-		// cards.shuffle();
+		// cards.selectionShuffle();
 	}
 
 
@@ -48,7 +48,7 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		if (this.size == 0) {
+		if (this.size <= 0) {
 			return true;
 		} else {
 			return false;
@@ -84,6 +84,7 @@ public class Deck {
 		} else {
 			return null;
 		}
+		// size -= 1;
 	}
 
 	/**
