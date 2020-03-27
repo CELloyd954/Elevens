@@ -20,6 +20,9 @@ public class Deck {
 	 */
 	private int size;
 
+	private int valueslength;
+	private int suitlength;
+
 
 	/**
 	 * Creates a new <code>Deck</code> instance.<BR>
@@ -31,29 +34,33 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		this.size = values.length * suits.length;
-		this.cards = new ArrayList<Card>(size);
-		for (int n = 0; n < suits.length; n++) {
-			for (int i = 0; i < values.length; i++) {
-				cards.add(new Card(ranks[i], suits[n], values[i]));
+		// this.suitlength = suits.length;
+		// this.valueslength = values.length;
+		// this.size = values.length * suits.length;
+		// this.cards = new ArrayList<Card>(size);
+		// for (int n = 0; n < suits.length; n++) {
+		// 	for (int i = 0; i < values.length; i++) {
+		// 		cards.add(new Card(ranks[i], suits[n], values[i]));
+		// 	}
+		// }
+		cards = new ArrayList<Card>();
+		for (int j = 0; j < ranks.length; j++) {
+			for (String suitString : suits) {
+				cards.add(new Card(ranks[j], suitString, values[j]));
 			}
 		}
-		// cards.selectionShuffle();
+		size = cards.size();
+		shuffle();
 	}
-
 
 	/**
 	 * Determines if this deck is empty (no undealt cards).
 	 * @return true if this deck is empty, false otherwise.
 	 */
 	public boolean isEmpty() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		if (this.size <= 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return size == 0;
 	}
+
 
 	/**
 	 * Accesses the number of undealt cards in this deck.
@@ -70,21 +77,27 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		int r;
+		for (int k = size - 1; k >= 1; k--) {
+			r = (int)(Math.random() * k);
+			Card temp = cards.get(k);
+			cards.set(k, cards.get(r));
+			cards.set(r, temp);
+		}
+		size = cards.size();
 	}
 
-	/**
-	 * Deals a card from this deck.
-	 * @return the card just dealt, or null if all the cards have been
-	 *         previously dealt.
+		/**
+	 * Determines if this deck is empty (no undealt cards).
+	 * @return true if this deck is empty, false otherwise.
 	 */
 	public Card deal() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		if (!cards.isEmpty()) {
-			return cards.get(this.size - 1);
-		} else {
+		if (isEmpty()) {
 			return null;
 		}
-		// size -= 1;
+		size--;
+		Card c = cards.get(size);
+		return c;
 	}
 
 	/**
@@ -121,4 +134,5 @@ public class Deck {
 		rtn = rtn + "\n";
 		return rtn;
 	}
+
 }
