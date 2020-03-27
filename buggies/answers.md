@@ -2,7 +2,7 @@ a5 answers:
 
 BUGGY1:
 - the isEmpty() function doesn't properly determine whther or not the deck is empty
-- this could be due to accidentally setting size == 1 or anything besides 0 
+- this may be due to accidentally setting size == 1 or anything besides 0 
 
 BUGGY2:
 - the size() function in the deck class doesn't properly return the size of the deck
