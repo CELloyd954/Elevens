@@ -27,5 +27,4 @@ public static printCards(ElevensBoard board) {
  		System.out.println(cards[cIndexes.get(k)].toString());
  	}
 }
-
 e. isLegal(), since it needs to make sure that there is even two or three cards that can be put through the containsPairSum11() or containsJQK() method
